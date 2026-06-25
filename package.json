@@ -1,6 +1,6 @@
 {
   "name": "secret-engine",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "author": "Christian Paul (https://github.com/cpauldev)",
   "description": "SecretEngine is a context-bound encryption and secret utility toolkit for TypeScript applications that need to store API keys, tokens, verification codes, and other sensitive values safely.",

@@ -2,7 +2,7 @@
 
 # SecretEngine: Context-Bound Secret Utilities for TypeScript
 
-![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white) ![Crypto](https://img.shields.io/badge/-Cryptography-111827?style=flat-square) ![Cipher](https://img.shields.io/badge/-AES--256--GCM-3F3F46?style=flat-square) ![KDF](https://img.shields.io/badge/-HKDF--SHA256-1E3A8A?style=flat-square) ![License](https://img.shields.io/badge/-MIT_License-blue?style=flat-square) [![Changelog](https://img.shields.io/badge/Changelog-v0.1.0-blue?style=flat-square)](./CHANGELOG.md)
+![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white) ![Crypto](https://img.shields.io/badge/-Cryptography-111827?style=flat-square) ![Cipher](https://img.shields.io/badge/-AES--256--GCM-3F3F46?style=flat-square) ![KDF](https://img.shields.io/badge/-HKDF--SHA256-1E3A8A?style=flat-square) ![License](https://img.shields.io/badge/-MIT_License-blue?style=flat-square) [![Changelog](https://img.shields.io/badge/Changelog-v0.1.1-blue?style=flat-square)](./CHANGELOG.md)
 
 SecretEngine helps TypeScript applications encrypt, mask, hash, generate, and verify sensitive values such as API keys, OAuth tokens, device codes, verification codes, and integration secrets. It uses AES-256-GCM for authenticated encryption and HKDF for purpose/context-bound key derivation.
 
@@ -168,7 +168,7 @@ bun run test:smoke
 ## Related Packages
 
 - [`rate-engine`](https://github.com/cpauldev/rate-engine) for policy-driven rate limiting.
-- [`route-engine`](https://github.com/cpauldev/route-engine) for safe HTTP route boundaries.
+- [`boundary-engine`](https://github.com/cpauldev/boundary-engine) for safe HTTP route boundaries.
 - [`redact-log`](https://github.com/cpauldev/redact-log) for safe logging.
 - [`session-engine`](https://github.com/cpauldev/session-engine) for browser session and cache lifecycle management.
 
