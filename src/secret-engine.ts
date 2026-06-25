@@ -42,7 +42,7 @@ function assertBase64Envelope(value: string): void {
 /**
  * Encrypts a plaintext string using AES-256-GCM with a pre-derived 32-byte key.
  * Generates a random initialization vector (IV) and appends the authentication tag.
- * 
+ *
  * @param plaintext The string value to encrypt.
  * @param key Cryptographically secure 32-byte Buffer key.
  * @returns A base64-encoded envelope string containing the IV, auth tag, and ciphertext.
@@ -62,7 +62,7 @@ export function encryptWithKey(plaintext: string, key: Buffer): string {
 /**
  * Decrypts an AES-256-GCM envelope using a pre-derived 32-byte key.
  * Verifies authenticity before decrypting.
- * 
+ *
  * @param encryptedData The base64-encoded envelope string.
  * @param key Cryptographically secure 32-byte Buffer key.
  * @returns The decrypted plaintext string.
@@ -88,7 +88,7 @@ export function decryptWithKey(encryptedData: string, key: Buffer): string {
 /**
  * Derives a cryptographically strong 32-byte key from a master key using HKDF-SHA256.
  * Ensures the derived key is bound to a specific context and purpose.
- * 
+ *
  * @param masterKey High-entropy master key.
  * @param salt Operation-specific salt (e.g. purpose name).
  * @param info Caller-specific context metadata (e.g. tenant or user ID).
@@ -132,14 +132,16 @@ function assertEnvelopeOptions(options: EncryptedEnvelopeOptions): void {
 export class SecretEngine {
   /**
    * Initializes a new instance of the SecretEngine.
-   * 
+   *
    * @param options Configuration options containing the masterKey.
    */
   constructor(private readonly options: SecretEngineOptions) {
     assertMasterKey(options);
   }
 
-  private deriveEnvelopeKey(options: EncryptedEnvelopeOptions): Promise<Buffer> {
+  private deriveEnvelopeKey(
+    options: EncryptedEnvelopeOptions,
+  ): Promise<Buffer> {
     return deriveKeyHKDF(
       this.options.masterKey,
       options.purpose,
@@ -149,7 +151,7 @@ export class SecretEngine {
 
   /**
    * Derives a context-specific key and encrypts the raw plaintext string into a base64 envelope.
-   * 
+   *
    * @param plaintext The sensitive data to encrypt.
    * @param options Metadata specifying purpose and context boundary for key derivation.
    * @returns A base64-encoded envelope containing the derived IV, auth tag, and ciphertext.
@@ -165,7 +167,7 @@ export class SecretEngine {
 
   /**
    * Derives a context-specific key and decrypts the base64-encoded envelope back into plaintext.
-   * 
+   *
    * @param encryptedData The base64-encoded envelope string.
    * @param options Metadata matching the exact purpose and context used for encryption.
    * @returns The decrypted plaintext string.
@@ -183,7 +185,7 @@ export class SecretEngine {
 /**
  * Masks a sensitive secret string (like an API key or password) to prevent exposure.
  * Displays only the configured prefixes/suffixes while covering the rest.
- * 
+ *
  * @param secret The secret string to mask.
  * @param options Configurations for visible characters and custom mask strings.
  * @returns The masked secret string.
@@ -205,13 +207,12 @@ export function maskSecret(
  * Generates a cryptographically secure random code (e.g. verification code or OTP).
  * Employs rejection sampling to eliminate modulo bias for custom alphabets.
  * Supports grouping into formatted chunks.
- * 
+ *
  * @param options Configuration for length, alphabet, chunks, and separators.
  * @returns The generated formatted code.
  */
 export function generateCode(options: CodeOptions = {}): string {
-  const alphabet =
-    options.alphabet ?? "23456789ABCDEFGHJKLMNPQRSTUVWXYZ";
+  const alphabet = options.alphabet ?? "23456789ABCDEFGHJKLMNPQRSTUVWXYZ";
   const length = options.length ?? 16;
   const chunkSize = options.chunkSize ?? 4;
   const separator = options.separator ?? "-";
@@ -247,10 +248,10 @@ export function generateCode(options: CodeOptions = {}): string {
 }
 
 /**
- * Hashes a secret value for database storage. 
+ * Hashes a secret value for database storage.
  * Generates a secure HMAC-SHA256 digest when a secret pepper is provided,
  * falling back to standard SHA-256 otherwise.
- * 
+ *
  * @param secret The secret value to hash.
  * @param options Configurations for algorithm, secret keys, and normalization callbacks.
  * @returns A hex-encoded hash string.
@@ -265,16 +266,13 @@ export function hashSecret(secret: string, options: HashOptions = {}): string {
       .update(normalized)
       .digest("hex");
   }
-  return crypto
-    .createHash(algorithm)
-    .update(normalized)
-    .digest("hex");
+  return crypto.createHash(algorithm).update(normalized).digest("hex");
 }
 
 /**
  * Verifies a candidate secret against an expected hash using a constant-time comparison
  * to block timing side-channel attacks.
- * 
+ *
  * @param candidate The user-provided raw input to check.
  * @param expectedHash The hex-encoded target hash.
  * @param options Normalization and keyed hashing configuration (must match hashSecret options).

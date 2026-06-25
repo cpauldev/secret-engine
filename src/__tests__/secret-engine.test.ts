@@ -75,7 +75,9 @@ describe("secret-engine", () => {
 
   it("masks, generates, hashes, and verifies secrets", () => {
     expect(maskSecret("abcdefghijkl")).toBe("abcd••••••ijkl");
-    expect(generateCode()).toMatch(/^[2-9A-HJ-NP-Z]{4}(?:-[2-9A-HJ-NP-Z]{4}){3}$/);
+    expect(generateCode()).toMatch(
+      /^[2-9A-HJ-NP-Z]{4}(?:-[2-9A-HJ-NP-Z]{4}){3}$/,
+    );
     const hash = hashSecret("ABCD-1234", {
       normalize: (value) => value.replace(/-/g, "").toLowerCase(),
     });
