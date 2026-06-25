@@ -1,0 +1,57 @@
+{
+  "name": "secret-engine",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": "Christian Paul (https://github.com/cpauldev)",
+  "description": "SecretEngine is a context-bound encryption and secret utility toolkit for TypeScript applications that need to store API keys, tokens, verification codes, and other sensitive values safely.",
+  "keywords": [
+    "encryption",
+    "aes-gcm",
+    "hkdf",
+    "secrets",
+    "api-keys",
+    "tokens",
+    "typescript",
+    "constant-time",
+    "nodejs"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cpauldev/secret-engine.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cpauldev/secret-engine/issues"
+  },
+  "homepage": "https://github.com/cpauldev/secret-engine#readme",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "test": "bun test src/__tests__",
+    "test:smoke": "bun -e \"const mod = await import('./dist/index.js'); for (const key of ['SecretEngine','encryptWithKey','decryptWithKey','deriveKeyHKDF','maskSecret','generateCode','hashSecret','verifySecretHash']) { if (typeof mod[key] !== 'function') throw new Error('Missing export: ' + key); }\"",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.test.json"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "bun-types": "^1.3.14",
+    "typescript": "^6.0.3"
+  },
+  "private": false
+}
