@@ -1,13 +1,13 @@
 import { describe, expect, it } from "bun:test";
 
 import {
-  SecretEngine,
   decryptWithKey,
   deriveKeyHKDF,
   encryptWithKey,
   generateCode,
   hashSecret,
   maskSecret,
+  SecretEngine,
   verifySecretHash,
 } from "../index";
 
