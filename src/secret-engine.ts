@@ -7,7 +7,7 @@ import type {
   HashOptions,
   MaskSecretOptions,
   SecretEngineOptions,
-} from "./types";
+} from "./types.js";
 
 const hkdfAsync = promisify(crypto.hkdf);
 const ALGORITHM = "aes-256-gcm";

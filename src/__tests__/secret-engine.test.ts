@@ -9,7 +9,7 @@ import {
   maskSecret,
   SecretEngine,
   verifySecretHash,
-} from "../index";
+} from "../index.js";
 
 const masterKey = "0123456789abcdef0123456789abcdef";
 

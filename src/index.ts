@@ -8,7 +8,7 @@ export {
   maskSecret,
   SecretEngine,
   verifySecretHash,
-} from "./secret-engine";
+} from "./secret-engine.js";
 
 export type {
   CodeOptions,
@@ -16,4 +16,4 @@ export type {
   HashOptions,
   MaskSecretOptions,
   SecretEngineOptions,
-} from "./types";
+} from "./types.js";
